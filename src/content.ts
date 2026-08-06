@@ -1,6 +1,6 @@
 export const story = {
-  anniversaryPassword: import.meta.env.VITE_ANNIVERSARY_PASSWORD ?? "1221",
-  anniversaryDate: "2025.12.21",
+  anniversaryPassword: import.meta.env.VITE_ANNIVERSARY_PASSWORD ?? "0102",
+  anniversaryDate: "2026.01.02",
   days: 229,
   backgroundTrack: import.meta.env.VITE_BACKGROUND_TRACK ?? "",
   cover: "/media/core/cover.webp",

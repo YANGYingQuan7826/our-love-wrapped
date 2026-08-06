@@ -10,7 +10,7 @@ npm run prepare-assets
 npm run dev
 ```
 
-默认预览密码为 `1221`。可复制 `.env.example` 为 `.env.local` 后修改密码。
+默认预览密码为 `0102`。可复制 `.env.example` 为 `.env.local` 后修改密码。
 
 ## 替换内容
 
