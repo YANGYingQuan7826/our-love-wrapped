@@ -505,15 +505,14 @@ function Story() {
 
       <Scene className="dog-scene">
         <p className="chapter__index">SPECIAL GUEST</p>
-        <div className="dog-scroll" ref={(el) => {
-          if (!el) return;
-          let pos = 0;
-          const scroll = () => { pos += 0.4; if (pos >= el.scrollWidth/2) pos = 0; el.scrollLeft = pos; };
-          const id = setInterval(scroll, 30);
-          return () => clearInterval(id);
-        }}>
-          {[...dogPhotos, ...dogPhotos].map((src, i) => (
-            <img key={i} src={src} alt="毛毛" loading="lazy" />
+        <div className="dog-masonry">
+          {dogPhotos.map((src, i) => (
+            <motion.img key={i} src={src} alt="毛毛" loading="lazy"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ amount: 0.2 }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+            />
           ))}
         </div>
         <RevealText className="dog-scene__title">毛毛说</RevealText>

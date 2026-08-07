@@ -521,6 +521,7 @@ button {
   position:relative; z-index:1; display:flex; gap:.5rem; overflow-x:auto;
   scroll-snap-type:x mandatory; width:100%; padding:0 1.5rem;
   transform:translateY(-1vh); scrollbar-width:none;
+  min-height: 60vh;
 }
 .trip-gallery::-webkit-scrollbar { display:none; }
 .trip-gallery img { flex:0 0 72%; aspect-ratio:3/4; object-fit:cover; scroll-snap-align:center; background:#d7d1c6; box-shadow:0 .8rem 2.4rem rgb(0 0 0 / 20%); }
@@ -953,24 +954,23 @@ button {
   box-shadow: 0 1.5rem 4rem rgb(109 63 51 / 25%);
 }
 
-.dog-scroll {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  width: 100%;
-  padding: 0 1rem;
-  margin-top: 3rem;
+.dog-masonry {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  width: min(86vw, 21rem);
+  margin: 2.5rem auto 0;
 }
 
-.dog-scroll::-webkit-scrollbar { display: none; }
-
-.dog-scroll img {
-  flex: 0 0 46%;
+.dog-masonry img {
+  width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: 0.8rem;
-  box-shadow: 0 0.5rem 1.5rem rgb(109 63 51 / 18%);
+  border-radius: 0.5rem;
+  background: #dcc5bd;
+  box-shadow: 0 0.3rem 1rem rgb(109 63 51 / 14%);
 }
 
 .dog-scene__title {
