@@ -313,40 +313,66 @@ button {
   letter-spacing: 0.18em;
 }
 
-.number-scene {
+.number-collage {
   align-items: center;
-  color: var(--paper);
-  text-align: center;
+  background:
+    radial-gradient(circle at 25% 20%, rgb(185 73 53 / 18%), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgb(80 127 156 / 12%), transparent 30%),
+    #1c1a16;
 }
 
-.number-scene--1 { background: #b74935; }
-.number-scene--2 { background: #547063; }
-.number-scene--3 { background: #d8b25c; color: #29231a; }
-.number-scene--4 { background: #507f9c; }
-.number-scene--5 { background: #e8e0d0; color: #211e18; }
+.number-collage__grid {
+  position: relative;
+  width: 100%;
+  max-width: 24rem;
+  margin: 0 auto;
+  padding-top: 100%;
+}
 
-.number-scene__ghost {
+.number-collage__card {
   position: absolute;
-  font-size: clamp(15rem, 78vw, 30rem);
-  font-weight: 900;
-  letter-spacing: -0.12em;
+  left: 50%;
+  top: var(--ty);
+  transform: translate(calc(-50% + var(--tx)), -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
 }
 
-.number-scene__number {
-  position: relative;
-  font-size: clamp(7rem, 37vw, 14rem);
+.number-collage__number {
   font-weight: 900;
-  line-height: 0.8;
-  letter-spacing: -0.09em;
+  line-height: 0.85;
+  letter-spacing: -0.07em;
 }
 
-.number-scene__caption {
-  position: relative;
-  margin-top: 1.8rem;
+.number-collage__card--xl .number-collage__number {
+  font-size: clamp(8rem, 36vw, 14rem);
+  color: #c85a43;
+}
+
+.number-collage__card--lg .number-collage__number {
+  font-size: clamp(5.5rem, 24vw, 9rem);
+  color: #d6b15e;
+}
+
+.number-collage__card--md .number-collage__number {
+  font-size: clamp(3.8rem, 16vw, 6.5rem);
+  color: #e9e5db;
+}
+
+.number-collage__card--sm .number-collage__number {
+  font-size: clamp(2.8rem, 12vw, 4.5rem);
+  color: #98b8c9;
+}
+
+.number-collage__caption {
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(1.25rem, 5.5vw, 2rem);
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  font-size: clamp(0.72rem, 3vw, 1rem);
+  font-weight: 500;
+  color: rgb(244 239 229 / 70%);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .chapter {
@@ -471,8 +497,46 @@ button {
   object-fit: contain;
 }
 
-.trip .photo-frame {
+.trip__grid {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  width: min(86vw, 24rem);
+  margin: 0 auto;
   transform: translateY(-2vh);
+}
+
+.trip__grid-main {
+  flex: 0 0 58%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #d7d1c6;
+  box-shadow: 0 1.4rem 3.4rem rgb(0 0 0 / 24%);
+}
+
+.trip__grid-main img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trip__grid-side {
+  flex: 0 0 38%;
+  margin-top: 2.8rem;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #d7d1c6;
+  box-shadow: 0 1rem 2.4rem rgb(0 0 0 / 20%);
+}
+
+.trip__grid-side img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .trip__copy {
@@ -585,9 +649,51 @@ button {
   line-height: 1;
 }
 
-.food-scene .photo-frame {
-  width: min(70vw, 20rem);
+.food-masonry {
+  position: relative;
+  z-index: 2;
+  width: min(88vw, 22rem);
   margin: 0 auto;
+  padding: 0.4rem;
+  columns: 2;
+  column-gap: 0.5rem;
+}
+
+.food-masonry__card {
+  break-inside: avoid;
+  position: relative;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  background: #d7d1c6;
+  box-shadow: 0 0.6rem 1.8rem rgb(0 0 0 / 16%);
+}
+
+.food-masonry__card:nth-child(odd) {
+  aspect-ratio: 1 / 1;
+}
+
+.food-masonry__card:nth-child(even) {
+  aspect-ratio: 3 / 4;
+}
+
+.food-masonry__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.food-masonry__label {
+  position: absolute;
+  left: 0.45rem;
+  bottom: 0.45rem;
+  padding: 0.18rem 0.45rem;
+  color: #f7f2e8;
+  background: rgb(0 0 0 / 48%);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  backdrop-filter: blur(6px);
 }
 
 .food-scene__copy {
@@ -866,6 +972,36 @@ button {
   font-weight: 700;
   line-height: 1.55;
   letter-spacing: -0.025em;
+}
+
+.wish-poem {
+  align-items: center;
+  color: #f3ecdf;
+  background: #3d4944;
+  text-align: center;
+}
+
+.wish-poem__title {
+  margin: 0 0 2.5rem;
+  font-family: "Noto Serif SC", serif;
+  font-size: clamp(2rem, 9vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
+.wish-poem__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.wish-poem__line {
+  margin: 0;
+  font-family: "Noto Serif SC", serif;
+  font-size: clamp(1.05rem, 4.5vw, 1.5rem);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: rgb(243 236 223 / 92%);
 }
 
 .finale {

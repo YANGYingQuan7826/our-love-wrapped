@@ -16,6 +16,7 @@ import {
   songs,
   story,
   trips,
+  wishes,
 } from "./content";
 
 type FrameProps = {
@@ -287,29 +288,45 @@ function Story() {
         </motion.p>
       </Scene>
 
-      {[
-        ["229", "个一起醒来的日子"],
-        ["4", "次共同出发"],
-        ["65", "个被留下的画面"],
-        ["6", "首认真记住的歌"],
-        ["2", "才是最重要的数字"],
-      ].map(([number, caption], index) => (
-        <Scene className={`number-scene number-scene--${index + 1}`} key={caption}>
-          <motion.span
-            className="number-scene__ghost"
-            initial={{ scale: 0.55, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 0.12 }}
-            viewport={{ amount: 0.65 }}
-            transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
-          >
-            {number}
-          </motion.span>
-          <RevealText className="number-scene__number">{number}</RevealText>
-          <RevealText className="number-scene__caption" delay={0.12}>
-            {caption}
-          </RevealText>
-        </Scene>
-      ))}
+      <Scene className="number-collage">
+        <motion.div
+          className="number-collage__grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.5 }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.18 } },
+          }}
+        >
+          {[
+            { number: "229", caption: "个一起醒来的日子", size: "lg", x: 0, y: 0 },
+            { number: "4", caption: "次共同出发", size: "md", x: 46, y: 4 },
+            { number: "65", caption: "个被留下的画面", size: "md", x: -38, y: 28 },
+            { number: "6", caption: "首认真记住的歌", size: "sm", x: 50, y: 44 },
+            { number: "2", caption: "才是最重要的数字", size: "xl", x: -8, y: 62 },
+          ].map((item) => (
+            <motion.div
+              key={item.caption}
+              className={`number-collage__card number-collage__card--${item.size}`}
+              style={
+                {
+                  "--tx": `${item.x}%`,
+                  "--ty": `${item.y}%`,
+                } as React.CSSProperties
+              }
+              variants={{
+                hidden: { opacity: 0, y: 24, rotate: -4 },
+                visible: { opacity: 1, y: 0, rotate: 0 },
+              }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="number-collage__number">{item.number}</span>
+              <span className="number-collage__caption">{item.caption}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </Scene>
 
       <Scene className="chapter chapter--travel">
         <p className="chapter__index">CHAPTER 01</p>
@@ -335,7 +352,26 @@ function Story() {
             <span>{trip.index}</span>
             <p>{trip.kicker}</p>
           </div>
-          <PhotoFrame src={trip.images[0]} alt={`${trip.city}旅行`} />
+          <div className="trip__grid">
+            <motion.div
+              className="trip__grid-main"
+              initial={{ y: 24, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ amount: 0.4 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <img src={trip.images[0]} alt={`${trip.city}旅行`} loading="lazy" />
+            </motion.div>
+            <motion.div
+              className="trip__grid-side"
+              initial={{ y: 18, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ amount: 0.35 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <img src={trip.images[1]} alt={`${trip.city}旅行`} loading="lazy" />
+            </motion.div>
+          </div>
           <div className="trip__copy">
             <RevealText className="trip__city">{trip.city}</RevealText>
             <RevealText className="trip__line" delay={0.12}>{trip.line}</RevealText>
@@ -373,7 +409,21 @@ function Story() {
 
       <Scene className="food-scene">
         <div className="food-scene__type" aria-hidden="true">吃</div>
-        <CyclingPhoto photos={food} alt="一起吃过的食物" square interval={850} />
+        <div className="food-masonry">
+          {food.map((item, index) => (
+            <motion.div
+              key={item.src}
+              className="food-masonry__card"
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ amount: 0.3 }}
+              transition={{ duration: 0.55, delay: index * 0.08 }}
+            >
+              <img src={item.src} alt={item.name} loading="lazy" />
+              <span className="food-masonry__label">{item.name}</span>
+            </motion.div>
+          ))}
+        </div>
         <RevealText className="food-scene__copy">
           爱有时，也是一起研究<br />下一顿吃什么。
         </RevealText>
@@ -459,6 +509,34 @@ function Story() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <Scene className="wish-poem">
+        <p className="wish-poem__title">科科的愿望</p>
+        <motion.div
+          className="wish-poem__lines"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.3 }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.35 } },
+          }}
+        >
+          {wishes.map((line, index) => (
+            <motion.p
+              key={index}
+              className="wish-poem__line"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              {line}
+            </motion.p>
+          ))}
+        </motion.div>
+      </Scene>
 
       <Scene className="letter-intro">
         <RevealText className="letter-intro__title">给科科的一封信</RevealText>

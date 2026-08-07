@@ -71,16 +71,19 @@ export const memories = [
 ] as const;
 
 export const food = [
-  "sukiyaki",
-  "bistro",
-  "puffer",
-  "birthday",
-  "hotpot",
-  "mushroom",
-  "oyster",
-  "luosifen",
-  "guizhou",
-].map((name) => `/media/food/${name}.webp`);
+  { key: "sukiyaki", name: "寿喜烧" },
+  { key: "bistro",   name: "小酒馆" },
+  { key: "puffer",   name: "河豚" },
+  { key: "birthday", name: "生日蛋糕" },
+  { key: "hotpot",   name: "火锅" },
+  { key: "mushroom", name: "菌子" },
+  { key: "oyster",   name: "生蚝" },
+  { key: "luosifen", name: "螺蛳粉" },
+  { key: "guizhou",  name: "贵州菜" },
+].map((item) => ({
+  src: `/media/food/${item.key}.webp`,
+  name: item.name,
+}));
 
 export const couple = [
   "/media/couple/booth.webp",
@@ -111,11 +114,29 @@ export const petPoem = [
   "爱是花卷，总是在水碗里洗jiojio。",
 ] as const;
 
+export const wishes = [
+  "你一定会成为",
+  "又会读书写作",
+  "又会做田野",
+  "又有很多想法",
+  "思考又深入",
+  "又有很多积累",
+  "又有好作品",
+  "又有能量",
+  "又敏锐细心",
+  "又开放积极",
+  "又温柔共情",
+  "又有锋芒又勇敢",
+  "又有灵气",
+  "又有足够的真朋友",
+  "身体又健康",
+  "生活又幸福",
+  "逆境全部渡过的",
+  "未来的人类学家",
+] as const;
+
 export const letter = [
   "我想把这229天，做成一个可以反复打开的地方。",
   "那些远方、晚餐和普通下午，因为身边是你，才被认真记住。",
-  "你一定会成为那个又敏锐细心、又开放积极的人。",
-  "有锋芒，也勇敢；有灵气，也有足够的真朋友。",
-  "身体健康，生活幸福，逆境全部渡过的未来的人类学家。",
   "[ 留给你：整封信最后的一句话 ]",
 ] as const;
