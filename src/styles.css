@@ -521,11 +521,11 @@ button {
   position:relative; z-index:1; display:flex; gap:.5rem; overflow-x:auto;
   scroll-snap-type:x mandatory; width:100%; padding:0 1.5rem;
   transform:translateY(-1vh); scrollbar-width:none;
-  min-height: 60vh;
 }
 .trip-gallery::-webkit-scrollbar { display:none; }
 .trip-gallery img, .trip-gallery__item {
-  flex: 0 0 72%;
+  flex: 0 0 70vw;
+  max-width: 18rem;
   aspect-ratio: 3 / 4;
   object-fit: cover;
   scroll-snap-align: center;
