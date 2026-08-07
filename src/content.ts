@@ -1,10 +1,12 @@
+const BASE = import.meta.env.BASE_URL;
+
 export const story = {
   anniversaryPassword: import.meta.env.VITE_ANNIVERSARY_PASSWORD ?? "0102",
   anniversaryDate: "2026.01.02",
   days: 229,
   backgroundTrack: import.meta.env.VITE_BACKGROUND_TRACK ?? "",
-  cover: "/media/core/cover.webp",
-  wall: "/media/core/wall.webp",
+  cover: `${BASE}media/core/cover.webp`,
+  wall: `${BASE}media/core/wall.webp`,
 };
 
 export const trips = [
@@ -15,9 +17,9 @@ export const trips = [
     line: "路第一次变远，我们第一次并肩。",
     placeholder: "[ 留给你：镇江最难忘的一句话 ]",
     images: [
-      "/media/trips/zhenjiang-1.webp",
-      "/media/trips/zhenjiang-2.webp",
-      "/media/trips/zhenjiang-3.webp",
+      `${BASE}media/trips/zhenjiang-1.webp`,
+      `${BASE}media/trips/zhenjiang-2.webp`,
+      `${BASE}media/trips/zhenjiang-3.webp`,
     ],
     tone: "#bd452e",
   },
@@ -28,9 +30,9 @@ export const trips = [
     line: "树影很慢，喜欢也开始有了日常。",
     placeholder: "[ 留给你：常熟最难忘的一句话 ]",
     images: [
-      "/media/trips/changshu-1.webp",
-      "/media/trips/changshu-2.webp",
-      "/media/trips/changshu-3.webp",
+      `${BASE}media/trips/changshu-1.webp`,
+      `${BASE}media/trips/changshu-2.webp`,
+      `${BASE}media/trips/changshu-3.webp`,
     ],
     tone: "#597355",
   },
@@ -41,9 +43,9 @@ export const trips = [
     line: "目的地不同，身边的人相同。",
     placeholder: "[ 留给你：桐庐最难忘的一句话 ]",
     images: [
-      "/media/trips/tonglu-1.webp",
-      "/media/trips/tonglu-2.webp",
-      "/media/trips/tonglu-3.webp",
+      `${BASE}media/trips/tonglu-1.webp`,
+      `${BASE}media/trips/tonglu-2.webp`,
+      `${BASE}media/trips/tonglu-3.webp`,
     ],
     tone: "#334c4c",
   },
@@ -54,20 +56,20 @@ export const trips = [
     line: "风景越来越多，我们也越来越像我们。",
     placeholder: "[ 留给你：昆明最难忘的一句话 ]",
     images: [
-      "/media/trips/kunming-1.webp",
-      "/media/trips/kunming-2.webp",
-      "/media/trips/kunming-3.webp",
+      `${BASE}media/trips/kunming-1.webp`,
+      `${BASE}media/trips/kunming-2.webp`,
+      `${BASE}media/trips/kunming-3.webp`,
     ],
     tone: "#708d3e",
   },
 ] as const;
 
 export const memories = [
-  { image: "/media/memories/movie.webp", label: "一起看过的电影" },
-  { image: "/media/memories/clay-1.webp", label: "一起捏过的泥巴" },
-  { image: "/media/memories/flowers.webp", label: "一起留下的花" },
-  { image: "/media/memories/blocks.webp", label: "一起拼起的小世界" },
-  { image: "/media/memories/home.webp", label: "一点一点，点缀成家" },
+  { image: `${BASE}media/memories/movie.webp`, label: "一起看过的电影" },
+  { image: `${BASE}media/memories/clay-1.webp`, label: "一起捏过的泥巴" },
+  { image: `${BASE}media/memories/flowers.webp`, label: "一起留下的花" },
+  { image: `${BASE}media/memories/blocks.webp`, label: "一起拼起的小世界" },
+  { image: `${BASE}media/memories/home.webp`, label: "一点一点，点缀成家" },
 ] as const;
 
 export const food = [
@@ -81,18 +83,18 @@ export const food = [
   { key: "luosifen", name: "螺蛳粉" },
   { key: "guizhou",  name: "贵州菜" },
 ].map((item) => ({
-  src: `/media/food/${item.key}.webp`,
+  src: `${BASE}media/food/${item.key}.webp`,
   name: item.name,
 }));
 
 export const couple = [
-  "/media/couple/booth.webp",
-  "/media/couple/metro.webp",
-  "/media/couple/changshu.webp",
-  "/media/couple/tonglu.webp",
-  "/media/couple/zhouzhuang.webp",
-  "/media/couple/clay.webp",
-  "/media/couple/train.webp",
+  `${BASE}media/couple/booth.webp`,
+  `${BASE}media/couple/metro.webp`,
+  `${BASE}media/couple/changshu.webp`,
+  `${BASE}media/couple/tonglu.webp`,
+  `${BASE}media/couple/zhouzhuang.webp`,
+  `${BASE}media/couple/clay.webp`,
+  `${BASE}media/couple/train.webp`,
 ];
 
 export const songs = [
@@ -105,7 +107,7 @@ export const songs = [
 
 export const dogPhotos = Array.from(
   { length: 7 },
-  (_, index) => `/media/dog/maomao-${index + 1}.webp`,
+  (_, index) => `${BASE}media/dog/maomao-${index + 1}.webp`,
 );
 
 export const petPoem = [
