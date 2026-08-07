@@ -286,6 +286,7 @@ function Story() {
         >
           向上滑动
         </motion.p>
+        <p className="hero__lyric">我让暖风给你送去个拥抱</p>
       </Scene>
 
       <Scene className="number-collage">
@@ -300,24 +301,19 @@ function Story() {
           }}
         >
           {[
-            { number: "229", caption: "个一起醒来的日子", size: "lg", x: 0, y: 0 },
-            { number: "4", caption: "次共同出发", size: "md", x: 46, y: 4 },
-            { number: "65", caption: "个被留下的画面", size: "md", x: -38, y: 28 },
-            { number: "6", caption: "首认真记住的歌", size: "sm", x: 50, y: 44 },
-            { number: "2", caption: "才是最重要的数字", size: "xl", x: -8, y: 62 },
+            { number: "229", caption: "个一起醒来的日子", area: "a" },
+            { number: "4", caption: "次共同出发", area: "b" },
+            { number: "65", caption: "个被留下的画面", area: "c" },
+            { number: "6", caption: "首认真记住的歌", area: "d" },
+            { number: "2", caption: "才是最重要的数字", area: "e" },
           ].map((item) => (
             <motion.div
               key={item.caption}
-              className={`number-collage__card number-collage__card--${item.size}`}
-              style={
-                {
-                  "--tx": `${item.x}%`,
-                  "--ty": `${item.y}%`,
-                } as React.CSSProperties
-              }
+              className={`number-collage__card`}
+              style={{ gridArea: item.area } as React.CSSProperties}
               variants={{
-                hidden: { opacity: 0, y: 24, rotate: -4 },
-                visible: { opacity: 1, y: 0, rotate: 0 },
+                hidden: { opacity: 0, y: 24 },
+                visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
@@ -326,6 +322,7 @@ function Story() {
             </motion.div>
           ))}
         </motion.div>
+        <p className="number-collage__lyric">勇敢，是从此把未来说成我们。</p>
       </Scene>
 
       <Scene className="chapter chapter--travel">
@@ -344,7 +341,7 @@ function Story() {
 
       {trips.map((trip) => (
         <Scene
-          className="trip"
+          className={`trip trip--${trip.layout}`}
           key={trip.city}
           style={{ "--trip-tone": trip.tone } as React.CSSProperties}
         >
@@ -352,30 +349,78 @@ function Story() {
             <span>{trip.index}</span>
             <p>{trip.kicker}</p>
           </div>
-          <div className="trip__grid">
-            <motion.div
-              className="trip__grid-main"
-              initial={{ y: 24, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ amount: 0.4 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <img src={trip.images[0]} alt={`${trip.city}旅行`} loading="lazy" />
-            </motion.div>
-            <motion.div
-              className="trip__grid-side"
-              initial={{ y: 18, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ amount: 0.35 }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <img src={trip.images[1]} alt={`${trip.city}旅行`} loading="lazy" />
-            </motion.div>
-          </div>
+
+          {trip.layout === "hero" && (
+            <div className="trip-hero">
+              <motion.img
+                src={trip.images[0]} alt={`${trip.city}旅行`}
+                className="trip-hero__main"
+                initial={{ scale: 1.12 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ amount: 0.4 }}
+                transition={{ duration: 1.6, ease: "easeOut" }}
+              />
+              <motion.img
+                src={trip.images[1]} alt={`${trip.city}旅行`}
+                className="trip-hero__stamp"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ amount: 0.35 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+              />
+            </div>
+          )}
+
+          {trip.layout === "split" && (
+            <div className="trip__grid">
+              <motion.div className="trip__grid-main"
+                initial={{ y: 24, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ amount: 0.4 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
+                <img src={trip.images[0]} alt={`${trip.city}旅行`} loading="lazy" />
+              </motion.div>
+              <motion.div className="trip__grid-side"
+                initial={{ y: 18, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ amount: 0.35 }}
+                transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}>
+                <img src={trip.images[1]} alt={`${trip.city}旅行`} loading="lazy" />
+              </motion.div>
+            </div>
+          )}
+
+          {trip.layout === "stack" && (
+            <div className="trip-stack">
+              {trip.images.slice(0, 3).map((img, i) => (
+                <motion.img key={img} src={img} alt={`${trip.city}旅行`}
+                  initial={{ y: 28, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: i * 0.12 }}
+                />
+              ))}
+            </div>
+          )}
+
+          {trip.layout === "gallery" && (
+            <div className="trip-gallery">
+              {trip.images.map((img) => (
+                <motion.img key={img} src={img} alt={`${trip.city}旅行`}
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ amount: 0.25 }}
+                  transition={{ duration: 0.55 }}
+                />
+              ))}
+            </div>
+          )}
+
           <div className="trip__copy">
             <RevealText className="trip__city">{trip.city}</RevealText>
             <RevealText className="trip__line" delay={0.12}>{trip.line}</RevealText>
             <p className="placeholder">{trip.placeholder}</p>
+          </div>
+          <div className="trip__spots">
+            {trip.spots.map((s, i) => <span key={i}>{s}</span>)}
           </div>
         </Scene>
       ))}
@@ -437,6 +482,7 @@ function Story() {
       </Scene>
 
       <Scene className="couple-scene">
+        <p className="couple-scene__lyric">你像蝴蝶飞出废墟，让我找回生命的美丽。</p>
         <CyclingPhoto photos={couple} alt="我们的合照" interval={1650} />
         <RevealText className="couple-scene__copy">
           给那个无可替代的<br />特别的人
@@ -457,25 +503,19 @@ function Story() {
         </RevealText>
       </Scene>
 
-      {songs.map((song, index) => (
-        <Scene className="song" key={song.title}>
-          <p className="song__index">TRACK {String(index + 1).padStart(2, "0")}</p>
-          <RevealText className="song__title">{song.title}</RevealText>
-          {song.artist && <p className="song__artist">{song.artist}</p>}
-          <motion.div
-            className="song__wave"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ amount: 0.65 }}
-            transition={{ duration: 1 }}
-          />
-          <RevealText className="song__line" delay={0.15}>{song.line}</RevealText>
-        </Scene>
-      ))}
-
       <Scene className="dog-scene">
         <p className="chapter__index">SPECIAL GUEST</p>
-        <CyclingPhoto photos={dogPhotos} alt="毛毛" interval={1350} />
+        <div className="dog-scroll" ref={(el) => {
+          if (!el) return;
+          let pos = 0;
+          const scroll = () => { pos += 0.4; if (pos >= el.scrollWidth/2) pos = 0; el.scrollLeft = pos; };
+          const id = setInterval(scroll, 30);
+          return () => clearInterval(id);
+        }}>
+          {[...dogPhotos, ...dogPhotos].map((src, i) => (
+            <img key={i} src={src} alt="毛毛" loading="lazy" />
+          ))}
+        </div>
         <RevealText className="dog-scene__title">毛毛说</RevealText>
         <RevealText className="dog-scene__copy" delay={0.12}>
           我观察了229天<br />批准他继续陪着你
@@ -536,6 +576,7 @@ function Story() {
             </motion.p>
           ))}
         </motion.div>
+        <p className="wish-poem__lyric">在有生之年，My only girl friend</p>
       </Scene>
 
       <Scene className="letter-intro">

@@ -16,6 +16,8 @@ export const trips = [
     kicker: "第一次出发",
     line: "路第一次变远，我们第一次并肩。",
     placeholder: "[ 留给你：镇江最难忘的一句话 ]",
+    layout: "hero" as const,
+    spots: ["[打卡地点]", "[打卡地点]", "[打卡地点]"],
     images: [
       `${BASE}media/trips/zhenjiang-1.webp`,
       `${BASE}media/trips/zhenjiang-2.webp`,
@@ -29,6 +31,8 @@ export const trips = [
     kicker: "第二次出发",
     line: "树影很慢，喜欢也开始有了日常。",
     placeholder: "[ 留给你：常熟最难忘的一句话 ]",
+    layout: "split" as const,
+    spots: ["[打卡地点]", "[打卡地点]", "[打卡地点]"],
     images: [
       `${BASE}media/trips/changshu-1.webp`,
       `${BASE}media/trips/changshu-2.webp`,
@@ -42,6 +46,8 @@ export const trips = [
     kicker: "第三次出发",
     line: "目的地不同，身边的人相同。",
     placeholder: "[ 留给你：桐庐最难忘的一句话 ]",
+    layout: "stack" as const,
+    spots: ["[打卡地点]", "[打卡地点]"],
     images: [
       `${BASE}media/trips/tonglu-1.webp`,
       `${BASE}media/trips/tonglu-2.webp`,
@@ -55,6 +61,8 @@ export const trips = [
     kicker: "第四次出发",
     line: "风景越来越多，我们也越来越像我们。",
     placeholder: "[ 留给你：昆明最难忘的一句话 ]",
+    layout: "gallery" as const,
+    spots: ["[打卡地点]", "[打卡地点]", "[打卡地点]", "[打卡地点]"],
     images: [
       `${BASE}media/trips/kunming-1.webp`,
       `${BASE}media/trips/kunming-2.webp`,

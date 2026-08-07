@@ -1,4 +1,38 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@500;700;900&display=swap");
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosanssc/v40/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosanssc/v40/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosanssc/v40/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG3bCnYw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7RlrCWv.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7QrrCWv.ttf) format('truetype');
+}
 
 :root {
   font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
@@ -313,6 +347,15 @@ button {
   letter-spacing: 0.18em;
 }
 
+.hero__lyric {
+  position: absolute;
+  bottom: max(5rem, 18vh);
+  color: rgb(247 242 232 / 28%);
+  font-family: "Noto Serif SC", serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+}
+
 .number-collage {
   align-items: center;
   background:
@@ -322,22 +365,46 @@ button {
 }
 
 .number-collage__grid {
-  position: relative;
-  width: 100%;
-  max-width: 24rem;
+  display: grid;
+  grid-template-areas:
+    "a a b"
+    "c d e"
+    "c d e";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 0.8rem;
+  width: min(88vw, 22rem);
   margin: 0 auto;
-  padding-top: 100%;
 }
 
 .number-collage__card {
-  position: absolute;
-  left: 50%;
-  top: var(--ty);
-  transform: translate(calc(-50% + var(--tx)), -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.4rem;
+}
+
+.number-collage__card:nth-child(1) .number-collage__number {
+  font-size: clamp(5rem, 22vw, 9rem);
+  color: #d6b15e;
+}
+
+.number-collage__card:nth-child(2) .number-collage__number,
+.number-collage__card:nth-child(3) .number-collage__number {
+  font-size: clamp(2.8rem, 12vw, 5rem);
+  color: #e9e5db;
+}
+
+.number-collage__card:nth-child(4) .number-collage__number {
+  font-size: clamp(2.2rem, 10vw, 3.8rem);
+  color: #98b8c9;
+}
+
+.number-collage__card:nth-child(5) .number-collage__number {
+  font-size: clamp(7rem, 30vw, 12rem);
+  color: #c85a43;
 }
 
 .number-collage__number {
@@ -346,33 +413,21 @@ button {
   letter-spacing: -0.07em;
 }
 
-.number-collage__card--xl .number-collage__number {
-  font-size: clamp(8rem, 36vw, 14rem);
-  color: #c85a43;
-}
-
-.number-collage__card--lg .number-collage__number {
-  font-size: clamp(5.5rem, 24vw, 9rem);
-  color: #d6b15e;
-}
-
-.number-collage__card--md .number-collage__number {
-  font-size: clamp(3.8rem, 16vw, 6.5rem);
-  color: #e9e5db;
-}
-
-.number-collage__card--sm .number-collage__number {
-  font-size: clamp(2.8rem, 12vw, 4.5rem);
-  color: #98b8c9;
-}
-
 .number-collage__caption {
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(0.72rem, 3vw, 1rem);
+  font-size: clamp(0.62rem, 2.5vw, 0.85rem);
   font-weight: 500;
-  color: rgb(244 239 229 / 70%);
+  color: rgb(244 239 229 / 65%);
   letter-spacing: 0.06em;
-  white-space: nowrap;
+  text-align: center;
+}
+
+.number-collage__lyric {
+  margin: 1.8rem 0 0;
+  font-family: "Noto Serif SC", serif;
+  font-size: 0.75rem;
+  color: rgb(244 239 229 / 35%);
+  letter-spacing: 0.08em;
 }
 
 .chapter {
@@ -441,6 +496,39 @@ button {
 .trip {
   background: var(--trip-tone);
 }
+
+.trip-hero {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.trip-hero__main { width:100%; height:100%; object-fit:cover; }
+.trip-hero__stamp {
+  position: absolute; z-index:2; right:1rem; bottom:max(12vh,8rem);
+  width:38%; aspect-ratio:3/4; object-fit:cover;
+  border:.4rem solid #eee8dc; border-bottom-width:1.8rem;
+  box-shadow:0 1rem 3rem rgb(0 0 0 / 30%); transform:rotate(3deg);
+}
+.trip-stack {
+  position:relative; z-index:1; display:flex; flex-direction:column; gap:.4rem;
+  width:min(80vw,20rem); margin:0 auto; transform:translateY(-1vh);
+}
+.trip-stack img { width:100%; object-fit:cover; background:#d7d1c6; box-shadow:0 .6rem 2rem rgb(0 0 0 / 18%); }
+.trip-stack img:nth-child(1) { aspect-ratio:16/9; }
+.trip-stack img:nth-child(2) { width:72%; aspect-ratio:3/4; align-self:flex-end; margin-top:-3rem; }
+.trip-stack img:nth-child(3) { width:64%; aspect-ratio:1; margin-top:-2.5rem; }
+.trip-gallery {
+  position:relative; z-index:1; display:flex; gap:.5rem; overflow-x:auto;
+  scroll-snap-type:x mandatory; width:100%; padding:0 1.5rem;
+  transform:translateY(-1vh); scrollbar-width:none;
+}
+.trip-gallery::-webkit-scrollbar { display:none; }
+.trip-gallery img { flex:0 0 72%; aspect-ratio:3/4; object-fit:cover; scroll-snap-align:center; background:#d7d1c6; box-shadow:0 .8rem 2.4rem rgb(0 0 0 / 20%); }
+.trip__spots {
+  position:absolute; z-index:3; right:1rem; left:1rem; bottom:max(1.5rem,env(safe-area-inset-bottom));
+  display:flex; flex-wrap:wrap; gap:.35rem;
+}
+.trip__spots span { padding:.15rem .5rem; color:rgb(255 255 255 / 58%); background:rgb(0 0 0 / 28%); font-size:.58rem; letter-spacing:.05em; backdrop-filter:blur(4px); }
 
 .trip::before {
   position: absolute;
@@ -729,6 +817,15 @@ button {
   background: #638aa2;
 }
 
+.couple-scene__lyric {
+  position: absolute;
+  top: max(5rem, 12vh);
+  color: rgb(255 255 255 / 35%);
+  font-family: "Noto Serif SC", serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+}
+
 .couple-scene .photo-frame {
   margin: 0 auto;
   border: 0.55rem solid #eee8dc;
@@ -854,6 +951,26 @@ button {
   margin: 0;
   border-radius: 50% 50% 44% 44%;
   box-shadow: 0 1.5rem 4rem rgb(109 63 51 / 25%);
+}
+
+.dog-scroll {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  width: 100%;
+  padding: 0 1rem;
+  margin-top: 3rem;
+}
+
+.dog-scroll::-webkit-scrollbar { display: none; }
+
+.dog-scroll img {
+  flex: 0 0 46%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(109 63 51 / 18%);
 }
 
 .dog-scene__title {
@@ -1002,6 +1119,14 @@ button {
   line-height: 1.7;
   letter-spacing: 0.04em;
   color: rgb(243 236 223 / 92%);
+}
+
+.wish-poem__lyric {
+  margin-top: 2.5rem;
+  color: rgb(243 236 223 / 30%);
+  font-family: "Noto Serif SC", serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
 }
 
 .finale {
