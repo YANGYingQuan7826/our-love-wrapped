@@ -403,12 +403,11 @@ function Story() {
 
           {trip.layout === "gallery" && (
             <div className="trip-gallery">
-              {trip.images.map((img) => (
-                <motion.img key={img} src={img} alt={`${trip.city}旅行`}
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ amount: 0.25 }}
-                  transition={{ duration: 0.55 }}
+              {trip.images.map((img, i) => (
+                <img key={img} src={img} alt={`${trip.city}旅行`}
+                  className="trip-gallery__item"
+                  style={{ animationDelay: `${i * 0.15}s` } as React.CSSProperties}
+                  loading="lazy"
                 />
               ))}
             </div>
