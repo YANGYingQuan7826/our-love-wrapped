@@ -10,6 +10,7 @@ const groups = {
   core: [
     ["封面照片.jpg", "cover"],
     ["照片墙.jpg", "wall", "inside"],
+    ["合照/大头贴-合照.jpg", "hero-bg", "hero"],
   ],
   trips: [
     ["镇江-第1次出去玩/镇江1.jpg", "zhenjiang-1"],
@@ -81,6 +82,11 @@ for (const [group, items] of Object.entries(groups)) {
       pipeline.resize(1200, 1200, {
         fit: "inside",
         withoutEnlargement: true,
+      });
+    } else if (mode === "hero") {
+      pipeline.resize(1080, 1920, {
+        fit: "cover",
+        position: "attention",
       });
     } else {
       pipeline.resize(900, 1200, {

@@ -7,6 +7,7 @@ export const story = {
   backgroundTrack: import.meta.env.VITE_BACKGROUND_TRACK ?? "",
   cover: `${BASE}media/core/cover.webp`,
   wall: `${BASE}media/core/wall.webp`,
+  heroBackground: `${BASE}media/core/hero-bg.webp`,
 };
 
 export const trips = [
@@ -46,12 +47,13 @@ export const trips = [
     kicker: "第三次出发",
     line: "目的地不同，身边的人相同。",
     placeholder: "[ 留给你：桐庐最难忘的一句话 ]",
-    layout: "stack" as const,
+    layout: "carousel" as const,
     spots: ["[打卡地点]", "[打卡地点]"],
     images: [
       `${BASE}media/trips/tonglu-1.webp`,
       `${BASE}media/trips/tonglu-2.webp`,
       `${BASE}media/trips/tonglu-3.webp`,
+      `${BASE}media/trips/tonglu-4.webp`,
     ],
     tone: "#334c4c",
   },
@@ -70,6 +72,40 @@ export const trips = [
     ],
     tone: "#708d3e",
   },
+] as const;
+
+export const stats = [
+  { number: "229", caption: "个日日夜夜" },
+  { number: "5", caption: "次共同出发" },
+  { number: "47", caption: "张便利贴" },
+  { number: "138+", caption: "个打卡点" },
+  { number: "33", caption: "公里的距离" },
+  { number: "61+", caption: "顿好吃的" },
+  { number: "6", caption: "部电影" },
+  { number: "2", caption: "场话剧" },
+  { number: "40+", caption: "张拍立得" },
+] as const;
+
+export const statsSummary = "共同组成了我们独一无二的回忆";
+
+export const lyricsWarmWind = [
+  "我让暖风",
+  "给你送去个拥抱",
+  "睡吧",
+  "靠近我",
+  "拥抱我",
+  "要快乐",
+] as const;
+
+export const lyricsBraveMoment = [
+  "这是我一生中最勇敢的瞬间",
+  "远在世界尽头的你站在我面前",
+  "这是我一生中最勇敢的瞬间",
+  "我的眼中藏着星点嘴角有弧线",
+  "这是我一生中最勇敢的瞬间",
+  "你是黎明地平线是我永恒的终点",
+  "我想把时间揉成碎片捧在我手心",
+  "再见面就是永远",
 ] as const;
 
 export const memories = [
@@ -107,7 +143,7 @@ export const couple = [
 
 export const songs = [
   { title: "让暖风给你送去个拥抱", artist: "", line: "睡吧，靠近我，拥抱我，要快乐。" },
-  { title: "这是我一生中最勇敢的瞬间", artist: "棱镜", line: "勇敢，是从此把未来说成我们。" },
+  { title: "这是我一生中最勇敢的瞬间", artist: "棱镜", line: "我想把时间揉成碎片捧在我手心，再见面就是永远。" },
   { title: "蝴蝶", artist: "陶喆", line: "[ 留给你：这首歌让你想到的画面 ]" },
   { title: "特别的人", artist: "方大同", line: "给那个无可替代的、特别的人。" },
   { title: "麦恩莉", artist: "方大同", line: "[ 留给你：最想放在这里的一句话 ]" },

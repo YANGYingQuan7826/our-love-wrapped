@@ -285,9 +285,28 @@ button {
 .hero {
   align-items: center;
   text-align: center;
+  background: #191713;
+}
+
+.hero__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  opacity: 0.6;
+  filter: saturate(0.85) contrast(1.05);
+}
+
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background:
-    radial-gradient(circle at 50% 48%, rgb(185 73 53 / 22%), transparent 28%),
-    #191713;
+    radial-gradient(circle at 50% 40%, rgb(25 23 19 / 30%), rgb(25 23 19 / 90%) 74%),
+    linear-gradient(to bottom, rgb(25 23 19 / 55%) 0%, rgb(25 23 19 / 72%) 100%);
 }
 
 .hero__halo {
@@ -318,17 +337,65 @@ button {
   color: #c8ae7b;
 }
 
-.hero__title {
+.achievement {
   position: relative;
-  font-family: "Noto Serif SC", serif;
-  font-size: clamp(4rem, 20vw, 8rem);
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.09em;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.hero__title span {
-  color: #c85a43;
+.achievement__medal {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 7rem;
+  aspect-ratio: 1;
+  margin: 0 auto 1.1rem;
+  border: 3px solid #c8a957;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2a2620 0%, #191713 70%);
+  box-shadow: 0 0 0 6px rgb(200 169 87 / 15%), 0 1.5rem 3rem rgb(0 0 0 / 45%);
+}
+
+.achievement__medal::before {
+  position: absolute;
+  inset: 8px;
+  border: 1px dashed rgb(200 169 87 / 45%);
+  border-radius: 50%;
+  content: "";
+}
+
+.achievement__medal-number {
+  position: relative;
+  font-family: "Noto Serif SC", serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #e9d9a8;
+}
+
+.achievement__unlocked {
+  margin: 0 0 0.5rem;
+  color: #c8ae7b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.achievement__title {
+  margin: 0;
+  font-family: "Noto Serif SC", serif;
+  font-size: clamp(2.2rem, 10vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.achievement__requirement {
+  margin: 0.7rem 0 0;
+  color: rgb(247 242 232 / 55%);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
 }
 
 .hero__subtitle {
@@ -345,6 +412,15 @@ button {
   color: rgb(247 242 232 / 42%);
   font-size: 0.7rem;
   letter-spacing: 0.18em;
+}
+
+.lyric-carousel {
+  position: relative;
+  z-index: 1;
+}
+
+.lyric-carousel p {
+  margin: 0;
 }
 
 .hero__lyric {
@@ -364,16 +440,35 @@ button {
     #1c1a16;
 }
 
+.number-collage__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  margin-bottom: 1.4rem;
+}
+
+.number-collage__hero-number {
+  font-family: "Noto Serif SC", serif;
+  font-weight: 900;
+  font-size: clamp(4.2rem, 19vw, 6.6rem);
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+  color: #d6b15e;
+}
+
+.number-collage__hero-caption {
+  font-family: "Noto Serif SC", serif;
+  font-size: clamp(0.85rem, 3.4vw, 1.05rem);
+  color: rgb(244 239 229 / 75%);
+  letter-spacing: 0.04em;
+}
+
 .number-collage__grid {
   display: grid;
-  grid-template-areas:
-    "a a b"
-    "c d e"
-    "c d e";
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 0.8rem;
-  width: min(88vw, 22rem);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 0.9rem;
+  width: min(90vw, 24rem);
   margin: 0 auto;
 }
 
@@ -382,52 +477,45 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
-  padding: 0.4rem;
-}
-
-.number-collage__card:nth-child(1) .number-collage__number {
-  font-size: clamp(5rem, 22vw, 9rem);
-  color: #d6b15e;
-}
-
-.number-collage__card:nth-child(2) .number-collage__number,
-.number-collage__card:nth-child(3) .number-collage__number {
-  font-size: clamp(2.8rem, 12vw, 5rem);
-  color: #e9e5db;
-}
-
-.number-collage__card:nth-child(4) .number-collage__number {
-  font-size: clamp(2.2rem, 10vw, 3.8rem);
-  color: #98b8c9;
-}
-
-.number-collage__card:nth-child(5) .number-collage__number {
-  font-size: clamp(7rem, 30vw, 12rem);
-  color: #c85a43;
+  gap: 0.15rem;
+  padding: 0.4rem 0.3rem;
 }
 
 .number-collage__number {
   font-weight: 900;
-  line-height: 0.85;
-  letter-spacing: -0.07em;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-size: clamp(1.5rem, 6.2vw, 2rem);
+  color: #e9e5db;
 }
 
 .number-collage__caption {
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(0.62rem, 2.5vw, 0.85rem);
+  font-size: clamp(0.58rem, 2.3vw, 0.7rem);
   font-weight: 500;
-  color: rgb(244 239 229 / 65%);
-  letter-spacing: 0.06em;
+  color: rgb(244 239 229 / 62%);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.number-collage__summary {
+  max-width: 22rem;
+  margin: 1.3rem auto 0;
+  font-family: "Noto Serif SC", serif;
+  font-size: clamp(1rem, 4.2vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1.5;
+  color: rgb(244 239 229 / 92%);
   text-align: center;
 }
 
 .number-collage__lyric {
-  margin: 1.8rem 0 0;
+  margin: 1.2rem 0 0;
   font-family: "Noto Serif SC", serif;
   font-size: 0.75rem;
   color: rgb(244 239 229 / 35%);
   letter-spacing: 0.08em;
+  text-align: center;
 }
 
 .chapter {
@@ -505,18 +593,24 @@ button {
 .trip-hero__main { width:100%; height:100%; object-fit:cover; }
 .trip-hero__stamp {
   position: absolute; z-index:2; right:1rem; bottom:max(12vh,8rem);
-  width:38%; aspect-ratio:3/4; object-fit:cover;
+  width:38%; aspect-ratio:3/4; overflow:hidden;
   border:.4rem solid #eee8dc; border-bottom-width:1.8rem;
   box-shadow:0 1rem 3rem rgb(0 0 0 / 30%); transform:rotate(3deg);
 }
-.trip-stack {
-  position:relative; z-index:1; display:flex; flex-direction:column; gap:.4rem;
-  width:min(80vw,20rem); margin:0 auto; transform:translateY(-1vh);
+.trip-hero__stamp img { display:block; width:100%; height:100%; object-fit:cover; }
+
+.trip-carousel { position:absolute; inset:0; z-index:1; overflow:hidden; }
+.trip-carousel__image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.trip-carousel__dots {
+  position:absolute; z-index:3; bottom:max(9.5rem,21vh); left:50%;
+  display:flex; gap:.4rem; transform:translateX(-50%);
 }
-.trip-stack img { width:100%; object-fit:cover; background:#d7d1c6; box-shadow:0 .6rem 2rem rgb(0 0 0 / 18%); }
-.trip-stack img:nth-child(1) { aspect-ratio:16/9; }
-.trip-stack img:nth-child(2) { width:72%; aspect-ratio:3/4; align-self:flex-end; margin-top:-3rem; }
-.trip-stack img:nth-child(3) { width:64%; aspect-ratio:1; margin-top:-2.5rem; }
+.trip-carousel__dots span {
+  width:.35rem; height:.35rem; border-radius:50%;
+  background:rgb(255 255 255 / 35%);
+  transition:background .3s ease, transform .3s ease;
+}
+.trip-carousel__dots span.is-active { background:#fff; transform:scale(1.3); }
 .trip-gallery {
   position:relative; z-index:1; display:flex; gap:.5rem; overflow-x:auto;
   scroll-snap-type:x mandatory; width:100%; padding:0 1.5rem;

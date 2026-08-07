@@ -11,9 +11,13 @@ import {
   dogPhotos,
   food,
   letter,
+  lyricsBraveMoment,
+  lyricsWarmWind,
   memories,
   petPoem,
   songs,
+  stats,
+  statsSummary,
   story,
   trips,
   wishes,
@@ -148,6 +152,158 @@ function CyclingPhoto({
   );
 }
 
+function LyricCarousel({
+  lines,
+  interval = 2400,
+  className = "",
+}: {
+  lines: readonly string[];
+  interval?: number;
+  className?: string;
+}) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (lines.length <= 1) return;
+    const timer = window.setInterval(
+      () => setIndex((current) => (current + 1) % lines.length),
+      interval,
+    );
+    return () => window.clearInterval(timer);
+  }, [interval, lines.length]);
+
+  return (
+    <div className={`lyric-carousel ${className}`}>
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={index}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          {lines[index]}
+        </motion.p>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function StampCarousel({
+  images,
+  alt,
+  interval = 1800,
+  className = "",
+  reveal,
+}: {
+  images: readonly string[];
+  alt: string;
+  interval?: number;
+  className?: string;
+  reveal?: { delay?: number };
+}) {
+  const [index, setIndex] = useState(0);
+  const [active, setActive] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setActive(entry.isIntersecting),
+      { threshold: 0.4 },
+    );
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!active || images.length <= 1) return;
+    const timer = window.setInterval(
+      () => setIndex((current) => (current + 1) % images.length),
+      interval,
+    );
+    return () => window.clearInterval(timer);
+  }, [active, interval, images.length]);
+
+  return (
+    <motion.div
+      ref={rootRef}
+      className={className}
+      initial={reveal ? { y: 18, opacity: 0 } : undefined}
+      whileInView={reveal ? { y: 0, opacity: 1 } : undefined}
+      viewport={reveal ? { amount: 0.35 } : undefined}
+      transition={
+        reveal
+          ? { duration: 0.8, delay: reveal.delay ?? 0, ease: [0.22, 1, 0.36, 1] }
+          : undefined
+      }
+    >
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={images[index]}
+          src={images[index]}
+          alt={`${alt} ${index + 1}`}
+          loading="lazy"
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.97 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        />
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+function TripCarousel({ images, alt }: { images: readonly string[]; alt: string }) {
+  const [index, setIndex] = useState(0);
+  const [active, setActive] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setActive(entry.isIntersecting),
+      { threshold: 0.4 },
+    );
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!active || images.length <= 1) return;
+    const timer = window.setInterval(
+      () => setIndex((current) => (current + 1) % images.length),
+      2600,
+    );
+    return () => window.clearInterval(timer);
+  }, [active, images.length]);
+
+  return (
+    <div ref={rootRef} className="trip-carousel">
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={images[index]}
+          src={images[index]}
+          alt={`${alt} ${index + 1}`}
+          loading="lazy"
+          className="trip-carousel__image"
+          initial={{ opacity: 0, scale: 1.06 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+        />
+      </AnimatePresence>
+      <div className="trip-carousel__dots">
+        {images.map((_, dotIndex) => (
+          <span key={dotIndex} className={dotIndex === index ? "is-active" : ""} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function AudioControl({ started }: { started: boolean }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -267,15 +423,28 @@ function Story() {
       <AudioControl started />
 
       <Scene className="hero">
+        <img src={story.heroBackground} alt="我们的大头贴合照" className="hero__backdrop" loading="eager" />
+        <div className="hero__shade" />
         <motion.div
           className="hero__halo"
           animate={reduceMotion ? undefined : { rotate: 360 }}
           transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
         />
         <p className="eyebrow">OUR LOVE WRAPPED · {story.anniversaryDate}</p>
-        <RevealText className="hero__title">
-          第<span>229</span>天
-        </RevealText>
+        <motion.div
+          className="achievement"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ amount: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="achievement__medal">
+            <span className="achievement__medal-number">229</span>
+          </div>
+          <p className="achievement__unlocked">成就解锁</p>
+          <p className="achievement__title">陪伴，第229天</p>
+          <p className="achievement__requirement">解锁条件：每一天都选你</p>
+        </motion.div>
         <RevealText className="hero__subtitle" delay={0.15}>
           一场只为科科开放的回忆展
         </RevealText>
@@ -286,43 +455,47 @@ function Story() {
         >
           向上滑动
         </motion.p>
-        <p className="hero__lyric">我让暖风给你送去个拥抱</p>
+        <LyricCarousel lines={lyricsWarmWind} interval={2000} className="hero__lyric" />
       </Scene>
 
       <Scene className="number-collage">
         <motion.div
+          className="number-collage__hero"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ amount: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className="number-collage__hero-number">{stats[0].number}</span>
+          <span className="number-collage__hero-caption">{stats[0].caption}</span>
+        </motion.div>
+        <motion.div
           className="number-collage__grid"
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.5 }}
+          viewport={{ amount: 0.4 }}
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.18 } },
+            visible: { transition: { staggerChildren: 0.08 } },
           }}
         >
-          {[
-            { number: "229", caption: "个一起醒来的日子", area: "a" },
-            { number: "4", caption: "次共同出发", area: "b" },
-            { number: "65", caption: "个被留下的画面", area: "c" },
-            { number: "6", caption: "首认真记住的歌", area: "d" },
-            { number: "2", caption: "才是最重要的数字", area: "e" },
-          ].map((item) => (
+          {stats.slice(1).map((item) => (
             <motion.div
               key={item.caption}
-              className={`number-collage__card`}
-              style={{ gridArea: item.area } as React.CSSProperties}
+              className="number-collage__card"
               variants={{
-                hidden: { opacity: 0, y: 24 },
+                hidden: { opacity: 0, y: 16 },
                 visible: { opacity: 1, y: 0 },
               }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="number-collage__number">{item.number}</span>
               <span className="number-collage__caption">{item.caption}</span>
             </motion.div>
           ))}
         </motion.div>
-        <p className="number-collage__lyric">勇敢，是从此把未来说成我们。</p>
+        <RevealText className="number-collage__summary">{statsSummary}</RevealText>
+        <LyricCarousel lines={lyricsBraveMoment} interval={2600} className="number-collage__lyric" />
       </Scene>
 
       <Scene className="chapter chapter--travel">
@@ -360,13 +533,12 @@ function Story() {
                 viewport={{ amount: 0.4 }}
                 transition={{ duration: 1.6, ease: "easeOut" }}
               />
-              <motion.img
-                src={trip.images[1]} alt={`${trip.city}旅行`}
+              <StampCarousel
+                images={trip.images.slice(1)}
+                alt={`${trip.city}旅行`}
                 className="trip-hero__stamp"
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ amount: 0.35 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
+                interval={1800}
+                reveal={{ delay: 0.2 }}
               />
             </div>
           )}
@@ -379,26 +551,18 @@ function Story() {
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
                 <img src={trip.images[0]} alt={`${trip.city}旅行`} loading="lazy" />
               </motion.div>
-              <motion.div className="trip__grid-side"
-                initial={{ y: 18, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ amount: 0.35 }}
-                transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}>
-                <img src={trip.images[1]} alt={`${trip.city}旅行`} loading="lazy" />
-              </motion.div>
+              <StampCarousel
+                images={trip.images.slice(1)}
+                alt={`${trip.city}旅行`}
+                className="trip__grid-side"
+                interval={1800}
+                reveal={{ delay: 0.15 }}
+              />
             </div>
           )}
 
-          {trip.layout === "stack" && (
-            <div className="trip-stack">
-              {trip.images.slice(0, 3).map((img, i) => (
-                <motion.img key={img} src={img} alt={`${trip.city}旅行`}
-                  initial={{ y: 28, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ amount: 0.3 }}
-                  transition={{ duration: 0.6, delay: i * 0.12 }}
-                />
-              ))}
-            </div>
+          {trip.layout === "carousel" && (
+            <TripCarousel images={trip.images} alt={`${trip.city}旅行`} />
           )}
 
           {trip.layout === "gallery" && (
