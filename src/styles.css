@@ -894,8 +894,8 @@ button {
 
 .record {
   position: absolute;
-  top: 6vh;
-  width: min(62vw, 22rem);
+  top: 5vh;
+  width: min(55vw, 19rem);
   aspect-ratio: 1;
   border-radius: 50%;
   background:
@@ -918,7 +918,7 @@ button {
   z-index: 2;
   margin-top: auto;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(2rem, 9vw, 3.2rem);
+  font-size: clamp(1.9rem, 8.5vw, 2.9rem);
   font-weight: 900;
   line-height: 1.2;
 }
@@ -1076,7 +1076,7 @@ button {
 .finale__title {
   margin-top: 1rem;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(2.6rem, 11vw, 4.4rem);
+  font-size: clamp(2.4rem, 10vw, 3.8rem);
   font-weight: 900;
   line-height: 1.3;
   letter-spacing: -0.06em;

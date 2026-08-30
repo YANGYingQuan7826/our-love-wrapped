@@ -591,7 +591,7 @@ function Story() {
       <Scene className="food-scene">
         <div className="food-scene__type" aria-hidden="true">吃</div>
         <div className="food-masonry">
-          {food.map((item, index) => (
+          {food.slice(0, 5).map((item, index) => (
             <motion.div
               key={item.src}
               className="food-masonry__card"
@@ -607,6 +607,28 @@ function Story() {
         </div>
         <RevealText className="food-scene__copy">
           爱有时，也是一起研究<br />下一顿吃什么。
+        </RevealText>
+      </Scene>
+
+      <Scene className="food-scene">
+        <div className="food-scene__type" aria-hidden="true">吃</div>
+        <div className="food-masonry">
+          {food.slice(5).map((item, index) => (
+            <motion.div
+              key={item.src}
+              className="food-masonry__card"
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ amount: 0.3 }}
+              transition={{ duration: 0.55, delay: index * 0.08 }}
+            >
+              <img src={item.src} alt={item.name} loading="lazy" />
+              <span className="food-masonry__label">{item.name}</span>
+            </motion.div>
+          ))}
+        </div>
+        <RevealText className="food-scene__copy">
+          还要一起<br />吃好多好多顿。
         </RevealText>
       </Scene>
 
