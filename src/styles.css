@@ -448,9 +448,10 @@ button {
 }
 
 .chapter {
-  justify-content: space-between;
-  padding-top: max(6rem, 14vh);
-  padding-bottom: max(5rem, 12vh);
+  justify-content: center;
+  gap: 1.1rem;
+  padding-top: max(3.5rem, 9vh);
+  padding-bottom: max(3rem, 8vh);
 }
 
 .chapter__index {
@@ -464,10 +465,10 @@ button {
   position: relative;
   z-index: 2;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(3.4rem, 15vw, 6.2rem);
+  font-size: clamp(2.6rem, 11vw, 4.6rem);
   font-weight: 900;
-  line-height: 1.03;
-  letter-spacing: -0.07em;
+  line-height: 1.06;
+  letter-spacing: -0.06em;
 }
 
 .chapter--travel {
@@ -730,7 +731,7 @@ button {
   padding: 1.4rem;
   background: #ebe2d2;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(2rem, 9vw, 3.7rem);
+  font-size: clamp(1.8rem, 8vw, 3.2rem);
   font-weight: 900;
   line-height: 1.3;
 }
@@ -751,7 +752,7 @@ button {
   bottom: max(4rem, 10vh);
   left: 1.4rem;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(2rem, 9vw, 3.5rem);
+  font-size: clamp(1.8rem, 8vw, 3.2rem);
   font-weight: 900;
   line-height: 1.15;
   letter-spacing: -0.05em;
@@ -777,17 +778,17 @@ button {
 .food-masonry {
   position: relative;
   z-index: 2;
-  width: min(88vw, 22rem);
+  width: min(80vw, 18rem);
   margin: 0 auto;
-  padding: 0.4rem;
+  padding: 0.2rem;
   columns: 2;
-  column-gap: 0.5rem;
+  column-gap: 0.4rem;
 }
 
 .food-masonry__card {
   break-inside: avoid;
   position: relative;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   overflow: hidden;
   background: #d7d1c6;
   box-shadow: 0 0.6rem 1.8rem rgb(0 0 0 / 16%);
@@ -825,9 +826,9 @@ button {
   position: relative;
   z-index: 3;
   width: min(70vw, 20rem);
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   font-family: "Noto Serif SC", serif;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: 1.5;
 }
@@ -893,8 +894,8 @@ button {
 
 .record {
   position: absolute;
-  top: 10vh;
-  width: min(88vw, 29rem);
+  top: 6vh;
+  width: min(62vw, 22rem);
   aspect-ratio: 1;
   border-radius: 50%;
   background:
@@ -917,7 +918,7 @@ button {
   z-index: 2;
   margin-top: auto;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(2.4rem, 11vw, 4rem);
+  font-size: clamp(2rem, 9vw, 3.2rem);
   font-weight: 900;
   line-height: 1.2;
 }
@@ -991,7 +992,7 @@ button {
 
 .letter-screen {
   justify-content: flex-start;
-  padding-top: max(5rem, 12vh);
+  padding-top: max(3.5rem, 9vh);
   padding-right: clamp(1.4rem, 6vw, 3rem);
   padding-left: clamp(1.4rem, 6vw, 3rem);
 }
@@ -999,9 +1000,9 @@ button {
 .letter-screen__copy {
   max-width: 30rem;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(0.92rem, 3.7vw, 1.05rem);
+  font-size: clamp(0.88rem, 3.5vw, 1rem);
   font-weight: 500;
-  line-height: 1.85;
+  line-height: 1.78;
   letter-spacing: 0.02em;
   white-space: pre-line;
 }
@@ -1014,9 +1015,9 @@ button {
 }
 
 .wish-poem__title {
-  margin: 0 0 2.5rem;
+  margin: 0 0 1.4rem;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(2rem, 9vw, 3.4rem);
+  font-size: clamp(1.8rem, 8vw, 3rem);
   font-weight: 900;
   letter-spacing: -0.05em;
 }
@@ -1024,20 +1025,20 @@ button {
 .wish-poem__lines {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 0.45rem;
 }
 
 .wish-poem__line {
   margin: 0;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(1.05rem, 4.5vw, 1.5rem);
-  line-height: 1.7;
+  font-size: clamp(0.95rem, 4vw, 1.28rem);
+  line-height: 1.55;
   letter-spacing: 0.04em;
   color: rgb(243 236 223 / 92%);
 }
 
 .wish-poem__lyric {
-  margin-top: 2.5rem;
+  margin-top: 1.4rem;
   color: rgb(243 236 223 / 30%);
   font-family: "Noto Serif SC", serif;
   font-size: 0.7rem;
