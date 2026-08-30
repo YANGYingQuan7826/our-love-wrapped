@@ -45,6 +45,13 @@
   --red: #b94935;
   --blue: #6c9bb7;
   --green: #657a5b;
+  --vh: 100vh;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --vh: 100dvh;
+  }
 }
 
 * {
@@ -197,7 +204,7 @@ button {
 
 .story {
   position: relative;
-  height: 100dvh;
+  height: var(--vh);
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: contain;
@@ -236,6 +243,7 @@ button {
   border-radius: 50%;
   color: inherit;
   background: rgb(20 18 15 / 36%);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -275,7 +283,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 100dvh;
+  min-height: var(--vh);
   padding: max(4.5rem, env(safe-area-inset-top)) 1.5rem max(3rem, env(safe-area-inset-bottom));
   overflow: hidden;
   scroll-snap-align: start;
@@ -566,7 +574,7 @@ button {
   position:absolute; z-index:3; right:1rem; left:1rem; bottom:max(1.5rem,env(safe-area-inset-bottom));
   display:flex; flex-wrap:wrap; gap:.35rem;
 }
-.trip__spots span { padding:.15rem .5rem; color:rgb(255 255 255 / 58%); background:rgb(0 0 0 / 28%); font-size:.58rem; letter-spacing:.05em; backdrop-filter:blur(4px); }
+.trip__spots span { padding:.15rem .5rem; color:rgb(255 255 255 / 58%); background:rgb(0 0 0 / 28%); font-size:.58rem; letter-spacing:.05em; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
 
 .trip::before {
   position: absolute;
@@ -819,6 +827,7 @@ button {
   font-size: 0.62rem;
   font-weight: 500;
   letter-spacing: 0.06em;
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
 
@@ -847,6 +856,7 @@ button {
   background: rgb(0 0 0 / 42%);
   font-size: 0.6rem;
   letter-spacing: 0.12em;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
