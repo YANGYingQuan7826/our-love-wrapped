@@ -8,13 +8,10 @@ import {
 } from "framer-motion";
 import {
   couple,
-  dogPhotos,
   food,
   letter,
-  lyricsBraveMoment,
   lyricsWarmWind,
   memories,
-  petPoem,
   songs,
   stats,
   statsSummary,
@@ -379,7 +376,7 @@ function Unlock({ onUnlock }: { onUnlock: () => void }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35, duration: 0.8 }}
       >
-        <p className="eyebrow">PRIVATE EXHIBITION · 229</p>
+        <p className="eyebrow">PRIVATE EXHIBITION · {story.anniversaryDate}</p>
         <h1>请输入<br />故事开始的日期</h1>
         <form onSubmit={submit}>
           <motion.div
@@ -415,7 +412,6 @@ function Story() {
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ container: rootRef });
   const progress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const [poemOpen, setPoemOpen] = useState(false);
 
   return (
     <div ref={rootRef} className="story">
@@ -431,22 +427,9 @@ function Story() {
           transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
         />
         <p className="eyebrow">OUR LOVE WRAPPED · {story.anniversaryDate}</p>
-        <motion.div
-          className="achievement"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ amount: 0.6 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="achievement__medal">
-            <span className="achievement__medal-number">229</span>
-          </div>
-          <p className="achievement__unlocked">成就解锁</p>
-          <p className="achievement__title">陪伴，第229天</p>
-          <p className="achievement__requirement">解锁条件：每一天都选你</p>
-        </motion.div>
-        <RevealText className="hero__subtitle" delay={0.15}>
-          一场只为科科开放的回忆展
+        <RevealText className="hero__title">至如彩虹般<br />绚烂的你</RevealText>
+        <RevealText className="hero__headphone" delay={0.15}>
+          戴上耳机打开声音观看效果更佳，如果没有声音请科科随便选一首歌曲播放~
         </RevealText>
         <motion.p
           className="hero__scroll"
@@ -459,32 +442,23 @@ function Story() {
       </Scene>
 
       <Scene className="number-collage">
+        <p className="number-collage__kicker">OUR NUMBERS</p>
         <motion.div
-          className="number-collage__hero"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.6 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="number-collage__hero-number">{stats[0].number}</span>
-          <span className="number-collage__hero-caption">{stats[0].caption}</span>
-        </motion.div>
-        <motion.div
-          className="number-collage__grid"
+          className="number-collage__list"
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.4 }}
+          viewport={{ amount: 0.25 }}
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.08 } },
+            visible: { transition: { staggerChildren: 0.1 } },
           }}
         >
-          {stats.slice(1).map((item) => (
+          {stats.map((item) => (
             <motion.div
               key={item.caption}
-              className="number-collage__card"
+              className="number-collage__row"
               variants={{
-                hidden: { opacity: 0, y: 16 },
+                hidden: { opacity: 0, y: 24 },
                 visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -495,7 +469,6 @@ function Story() {
           ))}
         </motion.div>
         <RevealText className="number-collage__summary">{statsSummary}</RevealText>
-        <LyricCarousel lines={lyricsBraveMoment} interval={2600} className="number-collage__lyric" />
       </Scene>
 
       <Scene className="chapter chapter--travel">
@@ -659,58 +632,22 @@ function Story() {
           animate={reduceMotion ? undefined : { rotate: 360 }}
           transition={{ repeat: Infinity, duration: 9, ease: "linear" }}
         >
-          <span>229</span>
+          <span>♡</span>
         </motion.div>
         <RevealText className="music-intro__copy">
           有些歌一响起<br />就知道是你
         </RevealText>
       </Scene>
 
-      <Scene className="dog-scene">
-        <p className="chapter__index">SPECIAL GUEST</p>
-        <div className="dog-masonry">
-          {dogPhotos.map((src, i) => (
-            <motion.img key={i} src={src} alt="毛毛" loading="lazy"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-            />
-          ))}
-        </div>
-        <RevealText className="dog-scene__title">毛毛说</RevealText>
-        <RevealText className="dog-scene__copy" delay={0.12}>
-          我观察了229天<br />批准他继续陪着你
-        </RevealText>
-        <button className="nose-button" type="button" onClick={() => setPoemOpen(true)}>
-          点一下鼻子，有彩蛋
-        </button>
+      <Scene className="letter-intro">
+        <RevealText className="letter-intro__title">给科科的一封信</RevealText>
       </Scene>
 
-      <AnimatePresence>
-        {poemOpen && (
-          <motion.div
-            className="poem-modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setPoemOpen(false)}
-          >
-            <motion.div
-              className="poem-modal__paper"
-              initial={{ y: 60, rotate: -3 }}
-              animate={{ y: 0, rotate: 0 }}
-              exit={{ y: 50 }}
-              onClick={(event) => event.stopPropagation()}
-            >
-              <p className="eyebrow">HIDDEN NOTE</p>
-              <h2>臭葵卷儿之爱</h2>
-              {petPoem.map((line) => <p key={line}>{line}</p>)}
-              <button type="button" onClick={() => setPoemOpen(false)}>收好这张纸条</button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {letter.map((paragraph) => (
+        <Scene className="letter-screen" key={paragraph}>
+          <RevealText className="letter-screen__copy">{paragraph}</RevealText>
+        </Scene>
+      ))}
 
       <Scene className="wish-poem">
         <p className="wish-poem__title">科科的愿望</p>
@@ -741,18 +678,6 @@ function Story() {
         <p className="wish-poem__lyric">在有生之年，My only girl friend</p>
       </Scene>
 
-      <Scene className="letter-intro">
-        <RevealText className="letter-intro__title">给科科的一封信</RevealText>
-        <p className="letter-intro__hint">音乐到这里，会轻一点。</p>
-      </Scene>
-
-      {letter.map((line, index) => (
-        <Scene className="letter-line" key={line}>
-          <p className="letter-line__index">{String(index + 1).padStart(2, "0")}</p>
-          <RevealText className="letter-line__copy">{line}</RevealText>
-        </Scene>
-      ))}
-
       <Scene className="finale">
         <motion.img
           src={story.wall}
@@ -764,12 +689,8 @@ function Story() {
           transition={{ duration: 2 }}
         />
         <div className="finale__shade" />
-        <RevealText className="finale__day">DAY 230</RevealText>
         <RevealText className="finale__title" delay={0.12}>
-          下一页<br />等我们一起写
-        </RevealText>
-        <RevealText className="finale__wish" delay={0.22}>
-          七夕快乐，我的女朋友。
+          你愿意跟我一起<br />续写后面的故事吗？
         </RevealText>
         <button className="replay" type="button" onClick={() => rootRef.current?.scrollTo({ top: 0, behavior: "smooth" })}>
           再看一次

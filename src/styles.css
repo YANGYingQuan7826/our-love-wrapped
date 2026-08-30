@@ -337,73 +337,26 @@ button {
   color: #c8ae7b;
 }
 
-.achievement {
+.hero__title {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.achievement__medal {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 7rem;
-  aspect-ratio: 1;
-  margin: 0 auto 1.1rem;
-  border: 3px solid #c8a957;
-  border-radius: 50%;
-  background: radial-gradient(circle, #2a2620 0%, #191713 70%);
-  box-shadow: 0 0 0 6px rgb(200 169 87 / 15%), 0 1.5rem 3rem rgb(0 0 0 / 45%);
-}
-
-.achievement__medal::before {
-  position: absolute;
-  inset: 8px;
-  border: 1px dashed rgb(200 169 87 / 45%);
-  border-radius: 50%;
-  content: "";
-}
-
-.achievement__medal-number {
-  position: relative;
   font-family: "Noto Serif SC", serif;
-  font-size: 2rem;
+  font-size: clamp(3rem, 14vw, 5.5rem);
   font-weight: 900;
-  color: #e9d9a8;
-}
-
-.achievement__unlocked {
-  margin: 0 0 0.5rem;
-  color: #c8ae7b;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-}
-
-.achievement__title {
-  margin: 0;
-  font-family: "Noto Serif SC", serif;
-  font-size: clamp(2.2rem, 10vw, 3.6rem);
-  font-weight: 900;
+  line-height: 1.18;
   letter-spacing: -0.04em;
+  text-shadow: 0 0.5rem 2.2rem rgb(0 0 0 / 50%);
 }
 
-.achievement__requirement {
-  margin: 0.7rem 0 0;
-  color: rgb(247 242 232 / 55%);
+.hero__headphone {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.5rem;
+  max-width: 21rem;
+  color: rgb(247 242 232 / 60%);
   font-size: 0.78rem;
   letter-spacing: 0.06em;
-}
-
-.hero__subtitle {
-  position: relative;
-  margin-top: 1.6rem;
-  color: rgb(247 242 232 / 70%);
-  font-size: 0.88rem;
-  letter-spacing: 0.18em;
+  line-height: 1.8;
 }
 
 .hero__scroll {
@@ -440,62 +393,47 @@ button {
     #1c1a16;
 }
 
-.number-collage__hero {
+.number-collage__kicker {
+  margin: 0 0 1.2rem;
+  color: #c8ae7b;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.number-collage__list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-  margin-bottom: 1.4rem;
+  gap: 0.35rem;
+  width: min(88vw, 24rem);
 }
 
-.number-collage__hero-number {
-  font-family: "Noto Serif SC", serif;
-  font-weight: 900;
-  font-size: clamp(4.2rem, 19vw, 6.6rem);
-  line-height: 0.85;
-  letter-spacing: -0.07em;
-  color: #d6b15e;
-}
-
-.number-collage__hero-caption {
-  font-family: "Noto Serif SC", serif;
-  font-size: clamp(0.85rem, 3.4vw, 1.05rem);
-  color: rgb(244 239 229 / 75%);
-  letter-spacing: 0.04em;
-}
-
-.number-collage__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem 0.9rem;
-  width: min(90vw, 24rem);
-  margin: 0 auto;
-}
-
-.number-collage__card {
+.number-collage__row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.15rem;
-  padding: 0.4rem 0.3rem;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgb(244 239 229 / 9%);
 }
 
 .number-collage__number {
+  flex: 0 0 4.4rem;
+  font-family: "Noto Serif SC", serif;
   font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  font-size: clamp(1.5rem, 6.2vw, 2rem);
-  color: #e9e5db;
+  font-size: clamp(1.9rem, 7.5vw, 2.6rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #d6b15e;
+  text-align: right;
 }
 
 .number-collage__caption {
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(0.58rem, 2.3vw, 0.7rem);
+  font-size: clamp(0.95rem, 3.8vw, 1.1rem);
   font-weight: 500;
-  color: rgb(244 239 229 / 62%);
+  color: rgb(244 239 229 / 82%);
   letter-spacing: 0.04em;
-  text-align: center;
+  line-height: 1.3;
 }
 
 .number-collage__summary {
@@ -506,15 +444,6 @@ button {
   font-weight: 700;
   line-height: 1.5;
   color: rgb(244 239 229 / 92%);
-  text-align: center;
-}
-
-.number-collage__lyric {
-  margin: 1.2rem 0 0;
-  font-family: "Noto Serif SC", serif;
-  font-size: 0.75rem;
-  color: rgb(244 239 229 / 35%);
-  letter-spacing: 0.08em;
   text-align: center;
 }
 
@@ -1042,112 +971,8 @@ button {
   line-height: 1.7;
 }
 
-.dog-scene {
-  align-items: center;
-  color: #28231b;
-  background: #e2c6be;
-}
-
-.dog-scene .chapter__index {
-  position: absolute;
-  top: max(4.5rem, 10vh);
-  left: 1.5rem;
-}
-
-.dog-scene .photo-frame {
-  width: min(65vw, 19rem);
-  margin: 0;
-  border-radius: 50% 50% 44% 44%;
-  box-shadow: 0 1.5rem 4rem rgb(109 63 51 / 25%);
-}
-
-.dog-masonry {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.4rem;
-  width: min(86vw, 21rem);
-  margin: 2.5rem auto 0;
-}
-
-.dog-masonry img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  background: #dcc5bd;
-  box-shadow: 0 0.3rem 1rem rgb(109 63 51 / 14%);
-}
-
-.dog-scene__title {
-  margin-top: -1.7rem;
-  z-index: 4;
-  font-family: "Noto Serif SC", serif;
-  font-size: 3.5rem;
-  font-weight: 900;
-  letter-spacing: -0.07em;
-}
-
-.dog-scene__copy {
-  margin-top: 0.7rem;
-  text-align: center;
-  line-height: 1.55;
-}
-
-.nose-button {
-  margin-top: 1.2rem;
-  padding: 0.7rem 1rem;
-  border: 0;
-  border-bottom: 1px solid rgb(40 35 27 / 35%);
-  color: inherit;
-  background: transparent;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-}
-
-.poem-modal {
-  position: fixed;
-  z-index: 300;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 1.5rem;
-  background: rgb(20 17 13 / 78%);
-  backdrop-filter: blur(14px);
-}
-
-.poem-modal__paper {
-  width: min(100%, 23rem);
-  padding: 2rem 1.7rem;
-  color: #29251e;
-  background: #eee4d2;
-  box-shadow: 0 2rem 5rem rgb(0 0 0 / 38%);
-}
-
-.poem-modal__paper h2 {
-  margin: 0.7rem 0 1.8rem;
-  font-family: "Noto Serif SC", serif;
-  font-size: 2rem;
-}
-
-.poem-modal__paper p:not(.eyebrow) {
-  margin: 1.1rem 0;
-  font-size: 0.9rem;
-  line-height: 1.7;
-}
-
-.poem-modal__paper button {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 0.8rem;
-  border: 0;
-  color: #eee4d2;
-  background: #29251e;
-}
-
 .letter-intro,
-.letter-line {
+.letter-screen {
   color: #29251e;
   background: #eee8dc;
 }
@@ -1164,38 +989,21 @@ button {
   letter-spacing: -0.08em;
 }
 
-.letter-intro__hint {
-  margin-top: 1rem;
-  color: rgb(41 37 30 / 48%);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+.letter-screen {
+  justify-content: flex-start;
+  padding-top: max(5rem, 12vh);
+  padding-right: clamp(1.4rem, 6vw, 3rem);
+  padding-left: clamp(1.4rem, 6vw, 3rem);
 }
 
-.letter-line {
-  padding-right: clamp(2rem, 9vw, 5rem);
-  padding-left: clamp(2rem, 9vw, 5rem);
-}
-
-.letter-line:nth-of-type(even) {
-  background: #e4dccd;
-}
-
-.letter-line__index {
-  position: absolute;
-  top: max(5rem, 14vh);
-  margin: 0;
-  color: #af765e;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-}
-
-.letter-line__copy {
-  max-width: 28rem;
+.letter-screen__copy {
+  max-width: 30rem;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(1.8rem, 8vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.55;
-  letter-spacing: -0.025em;
+  font-size: clamp(0.92rem, 3.7vw, 1.05rem);
+  font-weight: 500;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+  white-space: pre-line;
 }
 
 .wish-poem {
@@ -1258,35 +1066,19 @@ button {
   background: linear-gradient(to bottom, rgb(22 20 17 / 45%), rgb(22 20 17 / 92%));
 }
 
-.finale__day,
 .finale__title,
-.finale__wish,
 .replay {
   position: relative;
   z-index: 2;
 }
 
-.finale__day {
-  color: #d1ad6c;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-}
-
 .finale__title {
   margin-top: 1rem;
   font-family: "Noto Serif SC", serif;
-  font-size: clamp(3rem, 13vw, 5.4rem);
+  font-size: clamp(2.6rem, 11vw, 4.4rem);
   font-weight: 900;
-  line-height: 1.13;
-  letter-spacing: -0.07em;
-}
-
-.finale__wish {
-  margin-top: 1.4rem;
-  color: rgb(247 242 232 / 72%);
-  font-size: 0.95rem;
-  letter-spacing: 0.12em;
+  line-height: 1.3;
+  letter-spacing: -0.06em;
 }
 
 .replay {

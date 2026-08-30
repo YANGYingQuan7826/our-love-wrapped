@@ -8,3 +8,6 @@ dist/
 Thumbs.db
 .vercel
 .env*
+文本信息/
+图片素材/
+配文.txt
